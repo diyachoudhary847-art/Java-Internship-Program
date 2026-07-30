@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Grade Tracker</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        text-align: center;
+    }
+
+    .container {
+        width: 400px;
+        margin: 40px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px gray;
+    }
+
+    input {
+        width: 90%;
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    button {
+        padding: 10px 20px;
+        background: blue;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Student Grade Tracker</h2>
+
+    <input type="text" id="name" placeholder="Enter Student Name">
+
+    <input type="number" id="marks" placeholder="Enter Marks">
+
+    <button onclick="addStudent()">Add Student</button>
+
+    <table id="studentTable">
+        <tr>
+            <th>Name</th>
+            <th>Marks</th>
+            <th>Grade</th>
+        </tr>
+    </table>
+</div>
+
+<script>
+function addStudent() {
+
+    let name = document.getElementById("name").value;
+    let marks = Number(document.getElementById("marks").value);
+
+    if(name === "" || isNaN(marks)){
+        alert("Please enter valid details.");
+        return;
+    }
+
+    let grade;
+
+    if(marks >= 90)
+        grade = "A+";
+    else if(marks >= 80)
+        grade = "A";
+    else if(marks >= 70)
+        grade = "B";
+    else if(marks >= 60)
+        grade = "C";
+    else if(marks >= 50)
+        grade = "D";
+    else
+        grade = "F";
+
+    let table = document.getElementById("studentTable");
+    let row = table.insertRow();
+
+    row.insertCell(0).innerHTML = name;
+    row.insertCell(1).innerHTML = marks;
+    row.insertCell(2).innerHTML = grade;
+
+    document.getElementById("name").value = "";
+    document.getElementById("marks").value = "";
+}
+</script>
+
+</body>
+</html>
